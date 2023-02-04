@@ -32,25 +32,62 @@ def send_mail(recipient: str, sender: str, subject: str, body: str) -> bool:
     pprint.pprint(response.json())
 
 def get_inbox(recipient: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Sends a request to the server to obtain all the mails that are in the inbox of
+    the given recipient. Then print the inbox to the client.
+    
+    Args:
+    	recipient (str): The recipient of the mails
+    
+    Returns:
+    	None
+    	
     """
     response = requests.get(f'{SERVER}/mail/inbox/{recipient}')
     pprint.pprint(response.json())
 
 def get_sent(sender: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Sends a request to the server to obtain all the mails that were sent by
+    the given sender. Then prints the mails sent to the client.
+    
+    Args:
+    	sender (str): The sender of the mails
+    	
+    Returns:
+    	None
+    	
     """
     response = requests.get(f'{SERVER}/mail/sent/{sender}')
     pprint.pprint(response.json())
 
 def get_mail(mail_id: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Sends a request to the server to view a specific mail in mail. The mail printed
+    will have the same id given by the user. If no mail has the given id, it will print
+    nothing.
+    
+    Args:
+    	mail_id (str): An unique identifier for each mail
+    	
+    Return:
+    	None
+
     """
     response = requests.get(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
 
 def delete_mail(mail_id: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Sends a request to the server to delete a specific mail in mail. The mail deleted will
+    match the id given by the user. If no mail has the given id, nothing is deleted.
+    
+    Args:
+    	mail_id (str): An unique identifier for each mail
+    	
+    Return:
+    	None
+    
     """
     response = requests.delete(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
@@ -110,8 +147,7 @@ def main():
         get_mail(args.mail_id)
     elif args.command == 'delete':
         delete_mail(args.mail_id)
-
-# TODO: run the code!
+        
 # to run the code, open a terminal and type:
 #   python mail_client.py --help
 # For example, to send a mail, type:
@@ -119,4 +155,3 @@ def main():
 # you'll need to demo sending, receiving, and deleting mail for checkoff.
 if __name__ == '__main__':
     main()
-
